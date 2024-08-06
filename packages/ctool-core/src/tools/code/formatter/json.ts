@@ -15,13 +15,7 @@ export const formatter = new (class extends Base<'json'> {
     }
 
     async compress(): Promise<string> {
-        return prettier.format(this.code, {
-            parser: "json",
-            plugins: [parserJson5],
-            quoteProps: "preserve",
-            trailingComma: "none",
-            tabWidth: 0,
-        }).replace(/[\n\r]/g, "")
+        return JSON.stringify(JSON.parse(this.code))
     }
 })
 
